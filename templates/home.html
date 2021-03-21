@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for post in object_list %}
+        <div class="post-entry">
+            <h2><a href="/post/{{ post.id }}/">{{ post.title }}</a></h2>
+            <p>{{ post.body }}</p>
+            <div class="team-img"><img src={{ post.image.url }}  alt=""></div>
+        </div>
+        <hr style="width:50%;text-align:left;margin-left:0">
+        <div>
+            {% if post.comment_to_post.body is not none %}
+                <h4>Comments:</h4>
+                <p>Comment: {{ post.comment_to_post.body }}</p>
+                <p>Commented by user: {{ post.comment_to_post.user }}</p>
+            {% endif %}
+        </div>
+        <hr style="height:30px" color="green">
+    {% endfor %}
+{% endblock content %}
